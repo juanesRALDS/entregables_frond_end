@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 
 import PageSizeSelector from "./PageSizeSelector";
 import TableBody from "./TableBody";
 
 const Table = () => {
-  const [dato] = useState([
+  const [dato, setDato] = useState([
     { id: 1, nombre: "Juan", apellido: "Pérez" },
     { id: 2, nombre: "Ana", apellido: "García" },
     { id: 3, nombre: "Carlos", apellido: "Martínez" },
@@ -25,7 +24,7 @@ const Table = () => {
     { id: 17, nombre: "Ruben", apellido: "Rios" },
     { id: 18, nombre: "Mariana", apellido: "Cardenas" },
     { id: 19, nombre: "Sergio", apellido: "Guerrero" },
-    { id: 20, nombre: "Carolina", apellido: "Ramirez" }
+    { id: 20, nombre: "Carolina", apellido: "Ramirez" },
   ]);
 
   const [Busqueda, setBusqueda] = useState("");
@@ -45,10 +44,14 @@ const Table = () => {
     setCurrentPage(1);
   };
 
+  const handleDelete = (id) => {
+    setDato(dato.filter((user) => user.id !== id));
+  };
+
   return (
     <div>
       <PageSizeSelector value={pageSize} onChange={handlePageSizeChange} />
-      <TableBody data={currentData} />
+      <TableBody data={currentData} onDelete={handleDelete} />
       <div>
         <h3>
           Mostrando {currentData.length} de {datosFiltrados.length}
