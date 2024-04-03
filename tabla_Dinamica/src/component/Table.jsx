@@ -44,14 +44,14 @@ const Table = () => {
     setCurrentPage(1);
   };
 
-  const handleDelete = (id) => {
-    setDato(dato.filter((user) => user.id !== id));
-  };
+  const handelDelite = (id) => {
+    setDato(dato.filter(user => user.id != id));
+  }
 
   return (
     <div>
       <PageSizeSelector value={pageSize} onChange={handlePageSizeChange} />
-      <TableBody data={currentData} onDelete={handleDelete} />
+      <TableBody data={currentData} onDelite={handelDelite}/>
       <div>
         <h3>
           Mostrando {currentData.length} de {datosFiltrados.length}
